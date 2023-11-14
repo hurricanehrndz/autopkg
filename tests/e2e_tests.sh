@@ -36,11 +36,11 @@ echo "**Version:"
 poetry run autopkg version
 echo "**Repo-delete:"
 poetry run autopkg repo-delete recipes --prefs tests/preferences.plist
-echo "**Search:"
-poetry run autopkg search Firefox --prefs tests/preferences.plist
 
 
 if [[ -z "${CI}" && "${platform}" == "Darwin" ]]; then
+    echo "**Search:"
+    poetry run autopkg search Firefox --prefs tests/preferences.plist
     echo "**Run:"
     poetry run autopkg run -vv Firefox.munki --prefs tests/preferences.plist
     echo "**Run many:"

@@ -1056,6 +1056,9 @@ def get_processor(processor_name, verbose=None, recipe=None, env=None):
                 try:
                     # attempt to import the module
                     _tmp = importlib.util.module_from_spec(_spec)
+                    sys.modules[processor_name] = _tmp
+                    _spec.loader.exec_module(_tmp)
+
                     # look for an attribute with the step Processor name
                     _processor = getattr(_tmp, processor_name)
                     # add the processor to autopkglib's namespace
